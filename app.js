@@ -78,6 +78,7 @@
             <span class="card-school">${esc(p.school)}</span>
           </div>
           <div class="card-size">${esc(p.height)} / ${p.weight} lbs</div>
+          ${renderCardOffers(p.offers)}
         </div>
       </div>
     `).join('');
@@ -101,12 +102,13 @@
 
     modalBody.innerHTML = `
       <div class="modal-name">${esc(p.name)}</div>
+      <div class="modal-size">${esc(p.height)} / ${p.weight} lbs</div>
       <div class="modal-info">
         ${esc(Array.isArray(p.position) ? p.position.join(' / ') : p.position)} &bull; Class of ${p.classYear} &bull; ${esc(p.school)}
-        &bull; ${esc(p.height)} / ${p.weight} lbs
         ${p.gpa ? '&bull; GPA: ' + esc(p.gpa) : ''}
       </div>
 
+      ${renderOffers(p.offers)}
       ${renderMeasurables(p.measurables)}
       ${renderAwards(p.awards)}
       ${renderLinks(p.links)}
@@ -131,6 +133,34 @@
   });
 
   // Render helpers
+  function offerSlug(school) {
+    return school.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+
+  function renderCardOffers(offers) {
+    if (!offers || offers.length === 0) return '';
+    return '<div class="card-offers">' + offers.map(function (school) {
+      var initial = school.charAt(0).toUpperCase();
+      return '<div class="offer-badge" title="' + esc(school) + '">' +
+        '<img src="logos/' + offerSlug(school) + '.png" alt="' + esc(school) + '" onerror="this.parentNode.classList.add(\'no-logo\')">' +
+        '<span class="offer-initial">' + initial + '</span></div>';
+    }).join('') + '</div>';
+  }
+
+  function renderOffers(offers) {
+    if (!offers || offers.length === 0) return '';
+    var items = offers.map(function (school) {
+      var slug = offerSlug(school);
+      var initial = school.charAt(0).toUpperCase();
+      return '<div class="modal-offer-badge">' +
+        '<img class="offer-logo-lg" src="logos/' + slug + '.png" alt="' + esc(school) + '" onerror="this.parentNode.classList.add(\'no-logo\')">' +
+        '<span class="offer-initial-lg">' + initial + '</span>' +
+        '<span class="offer-school-name">' + esc(school) + '</span></div>';
+    }).join('');
+
+    return '<div class="modal-section"><h3>Scholarship Offers</h3><div class="offers-grid">' + items + '</div></div>';
+  }
+
   function renderMeasurables(m) {
     if (!m) return '';
     const labels = {

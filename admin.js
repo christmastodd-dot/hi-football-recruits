@@ -156,6 +156,7 @@
         document.getElementById('fBench').value = p.measurables.bench || '';
       }
       document.getElementById('fAwards').value = (p.awards || []).join('\n');
+      document.getElementById('fOffers').value = (p.offers || []).join('\n');
       if (p.links) {
         document.getElementById('fHudl').value = p.links.hudl || '';
         document.getElementById('fTwitter').value = p.links.twitter || '';
@@ -210,6 +211,7 @@
         bench: document.getElementById('fBench').value.trim()
       },
       awards: document.getElementById('fAwards').value.split('\n').map(s => s.trim()).filter(Boolean),
+      offers: document.getElementById('fOffers').value.split('\n').map(s => s.trim()).filter(Boolean),
       links: {
         hudl: document.getElementById('fHudl').value.trim(),
         twitter: document.getElementById('fTwitter').value.trim(),
