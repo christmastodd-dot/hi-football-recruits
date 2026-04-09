@@ -1,0 +1,271 @@
+[
+  {
+    "id": "esaiah-wong",
+    "name": "Esaiah Wong",
+    "classYear": 2028,
+    "position": [
+      "OL",
+      "DL"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-1",
+    "weight": 280,
+    "gpa": "3.5",
+    "photo": "photos/esaiahwong28.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/22588067/Esaiah-Wong",
+      "twitter": "https://x.com/_EsaiahWong",
+      "rivals": "",
+      "twoFourSeven": "https://247sports.com/player/esaiah-wong-46163865/",
+      "youtube": ""
+    },
+    "contact": {
+      "coachName": "Kaeo Drummondo",
+      "email": "kadrummo@ksbe.edu",
+      "phone": "808-384-0668"
+    }
+  },
+  {
+    "id": "lennox-chee",
+    "name": "Lennox Chee",
+    "classYear": 2028,
+    "position": [
+      "OL",
+      "DL"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-1",
+    "weight": 275,
+    "gpa": "",
+    "photo": "photos/lennoxchee28.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/22825651/lennox-chee",
+      "twitter": "https://x.com/lennoxchee",
+      "rivals": "",
+      "twoFourSeven": "https://247sports.com/player/lennox-chee-46164570/",
+      "youtube": ""
+    },
+    "contact": {
+      "coachName": "Kaeo Drummondo",
+      "email": "kadrummo@ksbe.edu",
+      "phone": "808-384-0668"
+    }
+  },
+  {
+    "id": "tau-purcell",
+    "name": "Tau Purcell",
+    "classYear": 2028,
+    "position": [
+      "LB"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-2",
+    "weight": 200,
+    "gpa": "3.8",
+    "photo": "photos/taupurcell28.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/18469717/Tau-Purcell",
+      "twitter": "https://x.com/TauPurcell",
+      "rivals": "",
+      "twoFourSeven": "https://247sports.com/player/taualii-purcell-46160313/",
+      "youtube": ""
+    },
+    "contact": {
+      "coachName": "Kaeo Drummondo",
+      "email": "kadrummo@ksbe.edu",
+      "phone": "808-384-0668"
+    }
+  },
+  {
+    "id": "evan-duke-cazimero",
+    "name": "Evan Duke Cazimero",
+    "classYear": 2027,
+    "position": [
+      "LB"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-0",
+    "weight": 200,
+    "gpa": "3.9",
+    "photo": "photos/evancazimero27.jpg",
+    "measurables": {
+      "fortyYard": "4.64",
+      "shuttle": "4.37",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [
+      "2025 1st-Team All-State (Hawaii)"
+    ],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/16205580/Evan-Duke-Cazimero",
+      "twitter": "https://x.com/EvanCazimero21",
+      "rivals": "",
+      "twoFourSeven": "https://247sports.com/player/evan-duke-cazimero-46161621/",
+      "youtube": ""
+    },
+    "contact": {
+      "coachName": "Kaeo Drummondo",
+      "email": "kadrummo@ksbe.edu",
+      "phone": "808-384-0668"
+    }
+  },
+  {
+    "id": "iraia-manumaleuna",
+    "name": "Iraia Manumaleuna",
+    "classYear": 2027,
+    "position": [
+      "LB"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-0",
+    "weight": 190,
+    "gpa": "",
+    "photo": "photos/iraiamanumaleuna27.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/16255678/Iraia-Manumaleuna",
+      "twitter": "https://x.com/Iraia_Manu/status/1922875014266634335",
+      "rivals": "",
+      "twoFourSeven": "https://247sports.com/player/iraia-manumaleuna-46158729/",
+      "youtube": ""
+    },
+    "contact": {
+      "coachName": "Kaeo Drummondo",
+      "email": "kadrummo@ksbe.edu",
+      "phone": "808-384-0668"
+    }
+  },
+  {
+    "id": "frank-kapohai-abreu",
+    "name": "Frank Kapohai Abreu",
+    "classYear": 2027,
+    "position": [
+      "TE",
+      "DL"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-3",
+    "weight": 230,
+    "gpa": "",
+    "photo": "photos/frankabreu27.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/19699712/Frank-Kapohai-Abreu",
+      "twitter": "",
+      "rivals": "",
+      "twoFourSeven": "",
+      "youtube": ""
+    },
+    "contact": {
+      "coachName": "Kaeo Drummondo",
+      "email": "kadrummo@ksbe.edu",
+      "phone": "808-384-0668"
+    }
+  },
+  {
+    "id": "linkin-apana",
+    "name": "Linkin Apana",
+    "classYear": 2027,
+    "position": [
+      "LB"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-2",
+    "weight": 215,
+    "gpa": "",
+    "photo": "photos/linkinapana27.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/19443559/Linkin-Apana",
+      "twitter": "https://x.com/LinkinApana2027",
+      "rivals": "",
+      "twoFourSeven": "https://247sports.com/player/linkin-apana-46157846/",
+      "youtube": ""
+    },
+    "contact": {
+      "coachName": "Kaeo Drummondo",
+      "email": "kadrummo@ksbe.edu",
+      "phone": "808-384-0668"
+    }
+  },
+  {
+    "id": "loea-keopuhiwa",
+    "name": "Loea Keopuhiwa",
+    "classYear": 2029,
+    "position": [
+      "QB"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-2",
+    "weight": 180,
+    "gpa": "",
+    "photo": "photos/loea29.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/26762392/loea-keopuhiwa",
+      "twitter": "",
+      "rivals": "",
+      "twoFourSeven": "https://247sports.com/player/loea-keopuhiwa-46163770/",
+      "youtube": ""
+    },
+    "contact": {
+      "coachName": "Kaeo Drummondo",
+      "email": "kadrummo@ksbe.edu",
+      "phone": "808-384-0668"
+    }
+  }
+]
