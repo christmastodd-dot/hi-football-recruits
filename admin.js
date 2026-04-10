@@ -8,6 +8,15 @@
 
   const STORAGE_KEY = 'hfr_players';
 
+  // GitHub publish target
+  const GITHUB_REPO = {
+    owner: 'christmastodd-dot',
+    name: 'hi-football-recruits',
+    branch: 'main',
+    path: 'data/players.json'
+  };
+  const TOKEN_KEY = 'hfr_gh_token';
+
   // DOM refs
   const loginGate = document.getElementById('loginGate');
   const adminContent = document.getElementById('adminContent');
@@ -24,6 +33,15 @@
   const formTitle = document.getElementById('formTitle');
   const playerForm = document.getElementById('playerForm');
   const editIdField = document.getElementById('editId');
+  const reloadBtn = document.getElementById('reloadBtn');
+  const publishBtn = document.getElementById('publishBtn');
+  const publishOverlay = document.getElementById('publishOverlay');
+  const publishClose = document.getElementById('publishClose');
+  const publishCancel = document.getElementById('publishCancel');
+  const publishConfirm = document.getElementById('publishConfirm');
+  const publishToken = document.getElementById('publishToken');
+  const publishMessage = document.getElementById('publishMessage');
+  const publishStatus = document.getElementById('publishStatus');
 
   let players = [];
 
@@ -268,6 +286,115 @@
     reader.readAsText(file);
     importFile.value = '';
   });
+
+  // --- Reload from Live ---
+  reloadBtn.addEventListener('click', () => {
+    if (!confirm('Discard local drafts and reload the player list from the live site? Any unpublished changes will be lost.')) return;
+    fetch('data/players.json?t=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        players = data;
+        savePlayers();
+        renderList();
+      })
+      .catch(() => alert('Unable to fetch live player data.'));
+  });
+
+  // --- Publish to GitHub ---
+  publishBtn.addEventListener('click', openPublish);
+  publishClose.addEventListener('click', closePublish);
+  publishCancel.addEventListener('click', closePublish);
+  publishOverlay.addEventListener('click', e => {
+    if (e.target === publishOverlay) closePublish();
+  });
+  publishConfirm.addEventListener('click', doPublish);
+
+  function openPublish() {
+    publishToken.value = sessionStorage.getItem(TOKEN_KEY) || '';
+    publishMessage.value = 'Update player data (' + players.length + ' players)';
+    setPublishStatus('', '');
+    publishOverlay.classList.add('active');
+    setTimeout(() => publishToken.focus(), 50);
+  }
+
+  function closePublish() {
+    publishOverlay.classList.remove('active');
+  }
+
+  function setPublishStatus(type, msg) {
+    publishStatus.textContent = msg;
+    publishStatus.className = 'publish-status' + (type ? ' ' + type : '');
+  }
+
+  // UTF-8 safe base64 encoder
+  function encodeBase64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  async function doPublish() {
+    const token = publishToken.value.trim();
+    const message = publishMessage.value.trim() || 'Update player data';
+
+    if (!token) {
+      setPublishStatus('error', 'Please enter a GitHub Personal Access Token.');
+      return;
+    }
+
+    sessionStorage.setItem(TOKEN_KEY, token);
+    publishConfirm.disabled = true;
+    setPublishStatus('info', 'Fetching current file from GitHub…');
+
+    const apiUrl = 'https://api.github.com/repos/' + GITHUB_REPO.owner + '/' + GITHUB_REPO.name +
+      '/contents/' + GITHUB_REPO.path + '?ref=' + GITHUB_REPO.branch;
+
+    try {
+      // Step 1: GET current file to retrieve its SHA
+      const getResp = await fetch(apiUrl, {
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Accept': 'application/vnd.github+json'
+        }
+      });
+
+      if (!getResp.ok) {
+        const errBody = await getResp.json().catch(() => ({}));
+        throw new Error('Could not fetch file (' + getResp.status + '): ' + (errBody.message || getResp.statusText));
+      }
+
+      const current = await getResp.json();
+      const sha = current.sha;
+
+      // Step 2: PUT new content
+      setPublishStatus('info', 'Committing changes to GitHub…');
+      const newContent = JSON.stringify(players, null, 2) + '\n';
+
+      const putResp = await fetch(apiUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: message,
+          content: encodeBase64(newContent),
+          sha: sha,
+          branch: GITHUB_REPO.branch
+        })
+      });
+
+      if (!putResp.ok) {
+        const errBody = await putResp.json().catch(() => ({}));
+        throw new Error('Commit failed (' + putResp.status + '): ' + (errBody.message || putResp.statusText));
+      }
+
+      setPublishStatus('success', '✓ Published! GitHub Pages will update the live site in ~1 minute.');
+    } catch (e) {
+      setPublishStatus('error', e.message);
+    } finally {
+      publishConfirm.disabled = false;
+    }
+  }
 
   // --- Escape ---
   function esc(str) {

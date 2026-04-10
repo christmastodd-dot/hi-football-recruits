@@ -27,7 +27,9 @@
           Import JSON
           <input type="file" accept=".json" id="importFile" hidden>
         </label>
+        <button class="btn btn-outline" id="reloadBtn" title="Discard local drafts and reload from the live site">Reload Live</button>
         <button class="btn btn-primary" id="addPlayerBtn">+ Add Player</button>
+        <button class="btn btn-publish" id="publishBtn">Publish to GitHub</button>
       </div>
     </div>
   </header>
@@ -180,6 +182,42 @@
               <button type="submit" class="btn btn-primary">Save Player</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publish to GitHub Modal -->
+    <div class="modal-overlay" id="publishOverlay">
+      <div class="modal" style="max-width:520px">
+        <button class="modal-close" id="publishClose">&times;</button>
+        <div class="modal-body">
+          <h2 style="margin-bottom:0.5rem">Publish to GitHub</h2>
+          <p style="color:var(--stone);font-size:0.86rem;margin-bottom:1.25rem;line-height:1.5">
+            Commits the current player list to <code>data/players.json</code> on the
+            <strong>main</strong> branch. GitHub Pages will refresh the live site within ~1 minute.
+          </p>
+
+          <div class="form-group">
+            <label>GitHub Personal Access Token</label>
+            <input type="password" id="publishToken" placeholder="github_pat_... or ghp_..." autocomplete="off">
+            <small class="form-hint">
+              Needs <strong>Contents: Read and write</strong> permission on this repo.
+              Stored only for this browser session.
+              <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create a token &rarr;</a>
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label>Commit Message</label>
+            <input type="text" id="publishMessage" value="Update player data">
+          </div>
+
+          <div id="publishStatus" class="publish-status"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" id="publishCancel">Cancel</button>
+            <button type="button" class="btn btn-primary" id="publishConfirm">Publish</button>
+          </div>
         </div>
       </div>
     </div>

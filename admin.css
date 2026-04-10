@@ -50,6 +50,23 @@
 
 .btn-danger:hover { opacity: 0.85; }
 
+.btn-publish {
+  background: linear-gradient(135deg, #0EA5A5, #10B981);
+  color: white;
+}
+
+.btn-publish:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(14, 165, 165, 0.35);
+}
+
+.btn-publish:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .btn-sm {
   padding: 0.35rem 0.7rem;
   font-size: 0.75rem;
@@ -255,6 +272,55 @@
   margin: 1.25rem 0 0.6rem;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--ember-glow);
+}
+
+.form-hint {
+  display: block;
+  color: var(--stone);
+  font-size: 0.72rem;
+  margin-top: 0.35rem;
+  line-height: 1.5;
+}
+
+.form-hint a {
+  color: var(--ocean);
+  text-decoration: none;
+}
+
+.form-hint a:hover {
+  text-decoration: underline;
+}
+
+/* Publish status message */
+.publish-status {
+  margin: 0.75rem 0 0.25rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  border: 1px solid transparent;
+}
+
+.publish-status:empty {
+  display: none;
+}
+
+.publish-status.info {
+  background: var(--ocean-glow);
+  color: var(--ocean);
+  border-color: rgba(14, 165, 165, 0.25);
+}
+
+.publish-status.success {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10B981;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.publish-status.error {
+  background: var(--ember-glow);
+  color: var(--ember);
+  border-color: rgba(232, 101, 58, 0.3);
 }
 
 .form-actions {

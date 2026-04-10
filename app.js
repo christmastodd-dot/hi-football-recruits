@@ -14,27 +14,17 @@
   const modalPhoto = document.getElementById('modalPhoto');
   const modalBody = document.getElementById('modalBody');
 
-  // Load player data — prefer localStorage (set by admin panel), fall back to JSON file
-  const stored = localStorage.getItem('hfr_players');
-  if (stored) {
-    try {
-      players = JSON.parse(stored);
+  // Load player data — always fetch the live file so everyone sees the same data.
+  // Cache-bust so browsers don't serve a stale copy after a publish.
+  fetch('data/players.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      players = data;
       render();
-    } catch (e) {
-      players = [];
-      render();
-    }
-  } else {
-    fetch('data/players.json')
-      .then(r => r.json())
-      .then(data => {
-        players = data;
-        render();
-      })
-      .catch(() => {
-        grid.innerHTML = '<div class="no-results">Unable to load player data.</div>';
-      });
-  }
+    })
+    .catch(() => {
+      grid.innerHTML = '<div class="no-results">Unable to load player data.</div>';
+    });
 
   // Filters
   searchInput.addEventListener('input', render);
