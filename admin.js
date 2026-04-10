@@ -164,11 +164,6 @@
         document.getElementById('f247').value = p.links.twoFourSeven || '';
         document.getElementById('fYoutube').value = p.links.youtube || '';
       }
-      if (p.contact) {
-        document.getElementById('fCoachName').value = p.contact.coachName || '';
-        document.getElementById('fEmail').value = p.contact.email || '';
-        document.getElementById('fPhone').value = p.contact.phone || '';
-      }
     } else {
       formTitle.textContent = 'Add Player';
     }
@@ -218,15 +213,15 @@
         rivals: document.getElementById('fRivals').value.trim(),
         twoFourSeven: document.getElementById('f247').value.trim(),
         youtube: document.getElementById('fYoutube').value.trim()
-      },
-      contact: {
-        coachName: document.getElementById('fCoachName').value.trim(),
-        email: document.getElementById('fEmail').value.trim(),
-        phone: document.getElementById('fPhone').value.trim()
       }
     };
 
+    // Preserve existing contact info if editing
     const existingIdx = players.findIndex(x => x.id === editIdField.value);
+    if (existingIdx >= 0 && players[existingIdx].contact) {
+      player.contact = players[existingIdx].contact;
+    }
+
     if (existingIdx >= 0) {
       players[existingIdx] = player;
     } else {

@@ -98,8 +98,6 @@
     modalPhoto.alt = p.name;
     modalPhoto.onerror = function () { this.src = 'photos/default.svg'; };
 
-    const contactEncoded = btoa(JSON.stringify(p.contact));
-
     modalBody.innerHTML = `
       <div class="modal-name">${esc(p.name)}</div>
       <div class="modal-size">${esc(p.height)} / ${p.weight} lbs</div>
@@ -112,7 +110,6 @@
       ${renderMeasurables(p.measurables)}
       ${renderAwards(p.awards)}
       ${renderLinks(p.links)}
-      ${renderContact(contactEncoded)}
     `;
 
     modalOverlay.classList.add('active');
@@ -222,50 +219,6 @@
       </div>
     `;
   }
-
-  function renderContact(encoded) {
-    return `
-      <div class="modal-section">
-        <h3>Contact Information</h3>
-        <div class="contact-gate" id="contactGate">
-          <p>Verify you're a real person to view contact details.</p>
-          <button class="captcha-btn" onclick="window.__revealContact(this, '${encoded}')">
-            Verify & Reveal Contact Info
-          </button>
-        </div>
-        <div class="contact-revealed" id="contactRevealed"></div>
-      </div>
-    `;
-  }
-
-  // Contact reveal — simple math challenge (replace with Turnstile in production)
-  window.__revealContact = function (btn, encoded) {
-    const a = Math.floor(Math.random() * 10) + 1;
-    const b = Math.floor(Math.random() * 10) + 1;
-    const answer = prompt('Quick verification: What is ' + a + ' + ' + b + '?');
-
-    if (answer === null) return;
-    if (parseInt(answer, 10) !== a + b) {
-      alert('Incorrect. Please try again.');
-      return;
-    }
-
-    try {
-      const contact = JSON.parse(atob(encoded));
-      const container = btn.closest('.modal-section').querySelector('.contact-revealed');
-      container.classList.add('visible');
-      container.innerHTML = `
-        <div class="contact-info">
-          ${contact.coachName ? `<div class="contact-row"><span>Coach</span><span>${esc(contact.coachName)}</span></div>` : ''}
-          ${contact.email ? `<div class="contact-row"><span>Email</span><span><a href="mailto:${esc(contact.email)}" style="color:var(--ocean)">${esc(contact.email)}</a></span></div>` : ''}
-          ${contact.phone ? `<div class="contact-row"><span>Phone</span><span><a href="tel:${esc(contact.phone)}" style="color:var(--ocean)">${esc(contact.phone)}</a></span></div>` : ''}
-        </div>
-      `;
-      btn.closest('.contact-gate').style.display = 'none';
-    } catch (e) {
-      alert('Error revealing contact info.');
-    }
-  };
 
   // SVG icons
   function linkIcon() {
