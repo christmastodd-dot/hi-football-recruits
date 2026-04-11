@@ -358,6 +358,22 @@ body {
   color: var(--ocean);
 }
 
+.card-tag.secondary {
+  background: rgba(107, 115, 132, 0.15);
+  color: var(--sand-dim);
+}
+
+/* Modal position line — primary prominent, secondary dimmed */
+.pos-primary {
+  color: var(--sand);
+  font-weight: 700;
+}
+
+.pos-secondary {
+  color: var(--stone);
+  font-weight: 400;
+}
+
 .card-school {
   color: var(--sand-dim);
   font-size: 0.82rem;

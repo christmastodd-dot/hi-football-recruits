@@ -63,7 +63,7 @@
         <div class="card-body">
           <div class="card-name">${esc(p.name)}</div>
           <div class="card-meta">
-            ${(Array.isArray(p.position) ? p.position : [p.position]).map(pos => `<span class="card-tag">${esc(pos)}</span>`).join('')}
+            ${(Array.isArray(p.position) ? p.position : [p.position]).map((pos, i) => `<span class="card-tag${i > 0 ? ' secondary' : ''}">${esc(pos)}</span>`).join('')}
             <span class="card-tag year">${p.classYear}</span>
             <span class="card-school">${esc(p.school)}</span>
           </div>
@@ -92,7 +92,7 @@
       <div class="modal-name">${esc(p.name)}</div>
       <div class="modal-size">${esc(p.height)} / ${p.weight} lbs</div>
       <div class="modal-info">
-        ${esc(Array.isArray(p.position) ? p.position.join(' / ') : p.position)} &bull; Class of ${p.classYear} &bull; ${esc(p.school)}
+        ${formatModalPositions(p.position)} &bull; Class of ${p.classYear} &bull; ${esc(p.school)}
         ${p.gpa ? '&bull; GPA: ' + esc(p.gpa) : ''}
       </div>
 
@@ -120,6 +120,14 @@
   });
 
   // Render helpers
+  function formatModalPositions(pos) {
+    var arr = Array.isArray(pos) ? pos : (pos ? [pos] : []);
+    if (arr.length === 0) return '';
+    if (arr.length === 1) return '<span class="pos-primary">' + esc(arr[0]) + '</span>';
+    return '<span class="pos-primary">' + esc(arr[0]) + '</span>' +
+      ' <span class="pos-secondary">/ ' + esc(arr.slice(1).join(' / ')) + '</span>';
+  }
+
   function offerSlug(school) {
     return school.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   }

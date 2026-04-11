@@ -155,10 +155,11 @@
       formTitle.textContent = 'Edit Player';
       editIdField.value = p.id;
       document.getElementById('fName').value = p.name;
-      // Set position checkboxes
-      const positions = Array.isArray(p.position) ? p.position : [p.position];
-      document.querySelectorAll('#fPosition input[type="checkbox"]').forEach(cb => {
-        cb.checked = positions.includes(cb.value);
+      // Split positions into primary (first) and secondary (rest) for backwards compatibility
+      const positions = Array.isArray(p.position) ? p.position : (p.position ? [p.position] : []);
+      document.getElementById('fPrimaryPosition').value = positions[0] || '';
+      document.querySelectorAll('#fSecondaryPositions input[type="checkbox"]').forEach(cb => {
+        cb.checked = positions.slice(1).includes(cb.value);
       });
       document.getElementById('fSchool').value = p.school;
       document.getElementById('fClassYear').value = p.classYear;
@@ -206,11 +207,18 @@
     const id = editIdField.value || name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     const photoFile = document.getElementById('fPhoto').value.trim();
 
+    // Build position array: primary first, then any secondary positions (excluding primary if duplicated)
+    const primaryPosition = document.getElementById('fPrimaryPosition').value;
+    const secondaryPositions = Array.from(document.querySelectorAll('#fSecondaryPositions input:checked'))
+      .map(cb => cb.value)
+      .filter(pos => pos !== primaryPosition);
+    const positions = primaryPosition ? [primaryPosition, ...secondaryPositions] : secondaryPositions;
+
     const player = {
       id: id,
       name: name,
       classYear: parseInt(document.getElementById('fClassYear').value, 10),
-      position: Array.from(document.querySelectorAll('#fPosition input:checked')).map(cb => cb.value),
+      position: positions,
       school: document.getElementById('fSchool').value.trim(),
       height: document.getElementById('fHeight').value.trim(),
       weight: parseInt(document.getElementById('fWeight').value, 10) || 0,
