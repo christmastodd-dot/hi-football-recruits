@@ -42,7 +42,7 @@
       if (pos && !positions.includes(pos)) return false;
       if (q && !p.name.toLowerCase().includes(q) && !p.school.toLowerCase().includes(q)) return false;
       return true;
-    });
+    }).sort((a, b) => a.name.localeCompare(b.name));
   }
 
   function render() {

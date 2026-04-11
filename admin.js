@@ -73,17 +73,30 @@
   }
 
   // --- Data ---
+  // One-time position migration for any stale local drafts (DL → DT)
+  function migratePositions(list) {
+    list.forEach(p => {
+      if (Array.isArray(p.position)) {
+        p.position = p.position.map(pos => pos === 'DL' ? 'DT' : pos);
+      } else if (p.position === 'DL') {
+        p.position = 'DT';
+      }
+    });
+    return list;
+  }
+
   function loadPlayers() {
     // Try localStorage first, fall back to fetching the JSON file
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
-      players = JSON.parse(stored);
+      players = migratePositions(JSON.parse(stored));
+      savePlayers();
       renderList();
     } else {
       fetch('data/players.json')
         .then(r => r.json())
         .then(data => {
-          players = data;
+          players = migratePositions(data);
           savePlayers();
           renderList();
         })
@@ -105,8 +118,8 @@
       return;
     }
 
-    // Sort by class year then name
-    const sorted = [...players].sort((a, b) => a.classYear - b.classYear || a.name.localeCompare(b.name));
+    // Sort alphabetically by name
+    const sorted = [...players].sort((a, b) => a.name.localeCompare(b.name));
 
     playerList.innerHTML = sorted.map(p => `
       <div class="admin-player-row" data-id="${p.id}">
