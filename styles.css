@@ -364,13 +364,55 @@ body {
 }
 
 .card-size {
-  color: var(--stone);
-  font-size: 0.8rem;
-  margin-top: 0.15rem;
-  font-family: 'Teko', sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  color: var(--sand);
+  font-size: 1.25rem;
+  margin-top: 0.3rem;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
 }
+
+/* Scholarship Offers on Card */
+.card-offers {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  margin-top: 0.45rem;
+  align-items: center;
+}
+
+.offer-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  background: var(--obsidian);
+  border: 1px solid rgba(107, 115, 132, 0.15);
+  flex-shrink: 0;
+}
+
+.offer-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.offer-initial {
+  display: none;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  color: var(--ocean);
+  background: var(--ocean-glow);
+}
+
+.offer-badge.no-logo img { display: none; }
+.offer-badge.no-logo .offer-initial { display: flex; }
 
 /* === Modal / Player Profile === */
 .modal-overlay {
@@ -467,6 +509,15 @@ body {
   margin-bottom: 0.35rem;
 }
 
+.modal-size {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--sand);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
 .modal-info {
   color: var(--stone);
   font-size: 0.9rem;
@@ -537,6 +588,54 @@ body {
   font-size: 0.82rem;
   font-weight: 600;
   border: 1px solid rgba(212, 168, 67, 0.15);
+}
+
+/* Scholarship Offers in Modal */
+.offers-grid {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.modal-offer-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--basalt);
+  padding: 0.4rem 0.75rem 0.4rem 0.4rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(107, 115, 132, 0.1);
+}
+
+.modal-offer-badge .offer-logo-lg {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.modal-offer-badge .offer-initial-lg {
+  display: none;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ocean);
+  background: var(--ocean-glow);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.modal-offer-badge.no-logo .offer-logo-lg { display: none; }
+.modal-offer-badge.no-logo .offer-initial-lg { display: flex; }
+
+.modal-offer-badge .offer-school-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sand);
 }
 
 /* Links */
@@ -795,7 +894,12 @@ body {
   .modal-photo { max-height: 220px; }
   .modal-body { padding: 1rem; }
   .modal-name { font-size: 1.8rem; }
+  .modal-size { font-size: 1.5rem; }
   .modal-info { font-size: 0.82rem; margin-bottom: 1rem; }
+
+  .offers-grid { gap: 0.35rem; }
+  .modal-offer-badge { padding: 0.3rem 0.6rem 0.3rem 0.3rem; }
+  .modal-offer-badge .offer-school-name { font-size: 0.76rem; }
 
   .measurables-grid { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
   .measurable-item { padding: 0.45rem 0.3rem; }

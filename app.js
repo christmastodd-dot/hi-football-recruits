@@ -14,27 +14,17 @@
   const modalPhoto = document.getElementById('modalPhoto');
   const modalBody = document.getElementById('modalBody');
 
-  // Load player data — prefer localStorage (set by admin panel), fall back to JSON file
-  const stored = localStorage.getItem('hfr_players');
-  if (stored) {
-    try {
-      players = JSON.parse(stored);
+  // Load player data — always fetch the live file so everyone sees the same data.
+  // Cache-bust so browsers don't serve a stale copy after a publish.
+  fetch('data/players.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      players = data;
       render();
-    } catch (e) {
-      players = [];
-      render();
-    }
-  } else {
-    fetch('data/players.json')
-      .then(r => r.json())
-      .then(data => {
-        players = data;
-        render();
-      })
-      .catch(() => {
-        grid.innerHTML = '<div class="no-results">Unable to load player data.</div>';
-      });
-  }
+    })
+    .catch(() => {
+      grid.innerHTML = '<div class="no-results">Unable to load player data.</div>';
+    });
 
   // Filters
   searchInput.addEventListener('input', render);
@@ -78,6 +68,7 @@
             <span class="card-school">${esc(p.school)}</span>
           </div>
           <div class="card-size">${esc(p.height)} / ${p.weight} lbs</div>
+          ${renderCardOffers(p.offers)}
         </div>
       </div>
     `).join('');
@@ -97,20 +88,18 @@
     modalPhoto.alt = p.name;
     modalPhoto.onerror = function () { this.src = 'photos/default.svg'; };
 
-    const contactEncoded = btoa(JSON.stringify(p.contact));
-
     modalBody.innerHTML = `
       <div class="modal-name">${esc(p.name)}</div>
+      <div class="modal-size">${esc(p.height)} / ${p.weight} lbs</div>
       <div class="modal-info">
         ${esc(Array.isArray(p.position) ? p.position.join(' / ') : p.position)} &bull; Class of ${p.classYear} &bull; ${esc(p.school)}
-        &bull; ${esc(p.height)} / ${p.weight} lbs
         ${p.gpa ? '&bull; GPA: ' + esc(p.gpa) : ''}
       </div>
 
+      ${renderOffers(p.offers)}
       ${renderMeasurables(p.measurables)}
       ${renderAwards(p.awards)}
       ${renderLinks(p.links)}
-      ${renderContact(contactEncoded)}
     `;
 
     modalOverlay.classList.add('active');
@@ -131,6 +120,34 @@
   });
 
   // Render helpers
+  function offerSlug(school) {
+    return school.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+
+  function renderCardOffers(offers) {
+    if (!offers || offers.length === 0) return '';
+    return '<div class="card-offers">' + offers.map(function (school) {
+      var initial = school.charAt(0).toUpperCase();
+      return '<div class="offer-badge" title="' + esc(school) + '">' +
+        '<img src="logos/' + offerSlug(school) + '.png" alt="' + esc(school) + '" onerror="this.parentNode.classList.add(\'no-logo\')">' +
+        '<span class="offer-initial">' + initial + '</span></div>';
+    }).join('') + '</div>';
+  }
+
+  function renderOffers(offers) {
+    if (!offers || offers.length === 0) return '';
+    var items = offers.map(function (school) {
+      var slug = offerSlug(school);
+      var initial = school.charAt(0).toUpperCase();
+      return '<div class="modal-offer-badge">' +
+        '<img class="offer-logo-lg" src="logos/' + slug + '.png" alt="' + esc(school) + '" onerror="this.parentNode.classList.add(\'no-logo\')">' +
+        '<span class="offer-initial-lg">' + initial + '</span>' +
+        '<span class="offer-school-name">' + esc(school) + '</span></div>';
+    }).join('');
+
+    return '<div class="modal-section"><h3>Scholarship Offers</h3><div class="offers-grid">' + items + '</div></div>';
+  }
+
   function renderMeasurables(m) {
     if (!m) return '';
     const labels = {
@@ -192,50 +209,6 @@
       </div>
     `;
   }
-
-  function renderContact(encoded) {
-    return `
-      <div class="modal-section">
-        <h3>Contact Information</h3>
-        <div class="contact-gate" id="contactGate">
-          <p>Verify you're a real person to view contact details.</p>
-          <button class="captcha-btn" onclick="window.__revealContact(this, '${encoded}')">
-            Verify & Reveal Contact Info
-          </button>
-        </div>
-        <div class="contact-revealed" id="contactRevealed"></div>
-      </div>
-    `;
-  }
-
-  // Contact reveal — simple math challenge (replace with Turnstile in production)
-  window.__revealContact = function (btn, encoded) {
-    const a = Math.floor(Math.random() * 10) + 1;
-    const b = Math.floor(Math.random() * 10) + 1;
-    const answer = prompt('Quick verification: What is ' + a + ' + ' + b + '?');
-
-    if (answer === null) return;
-    if (parseInt(answer, 10) !== a + b) {
-      alert('Incorrect. Please try again.');
-      return;
-    }
-
-    try {
-      const contact = JSON.parse(atob(encoded));
-      const container = btn.closest('.modal-section').querySelector('.contact-revealed');
-      container.classList.add('visible');
-      container.innerHTML = `
-        <div class="contact-info">
-          ${contact.coachName ? `<div class="contact-row"><span>Coach</span><span>${esc(contact.coachName)}</span></div>` : ''}
-          ${contact.email ? `<div class="contact-row"><span>Email</span><span><a href="mailto:${esc(contact.email)}" style="color:var(--ocean)">${esc(contact.email)}</a></span></div>` : ''}
-          ${contact.phone ? `<div class="contact-row"><span>Phone</span><span><a href="tel:${esc(contact.phone)}" style="color:var(--ocean)">${esc(contact.phone)}</a></span></div>` : ''}
-        </div>
-      `;
-      btn.closest('.contact-gate').style.display = 'none';
-    } catch (e) {
-      alert('Error revealing contact info.');
-    }
-  };
 
   // SVG icons
   function linkIcon() {
