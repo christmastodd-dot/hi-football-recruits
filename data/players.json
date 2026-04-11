@@ -30,7 +30,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -64,7 +64,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -97,7 +97,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -122,6 +122,14 @@
     "awards": [
       "2025 1st-Team All-State (Hawaii)"
     ],
+    "offers": [
+      "Hawaii",
+      "SDSU",
+      "UNLV",
+      "CSU",
+      "WSU",
+      "Army"
+    ],
     "links": {
       "hudl": "https://www.hudl.com/profile/16205580/Evan-Duke-Cazimero",
       "twitter": "https://x.com/EvanCazimero21",
@@ -132,7 +140,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -165,7 +173,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -199,7 +207,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -232,7 +240,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -265,7 +273,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   }
 ]
