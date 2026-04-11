@@ -4,8 +4,8 @@
     "name": "Esaiah Wong",
     "classYear": 2028,
     "position": [
-      "OL",
-      "DT"
+      "DT",
+      "OL"
     ],
     "school": "Kamehameha Schools Kapalama",
     "height": "6-1",
@@ -43,8 +43,8 @@
     "name": "Lennox Chee",
     "classYear": 2028,
     "position": [
-      "OL",
-      "DT"
+      "DT",
+      "OL"
     ],
     "school": "Kamehameha Schools Kapalama",
     "height": "6-1",
@@ -80,7 +80,8 @@
     "name": "Tau Purcell",
     "classYear": 2028,
     "position": [
-      "LB"
+      "LB",
+      "Edge"
     ],
     "school": "Kamehameha Schools Kapalama",
     "height": "6-2",
@@ -202,8 +203,9 @@
     "name": "Frank Kapohai Abreu",
     "classYear": 2027,
     "position": [
+      "Edge",
       "TE",
-      "DT"
+      "LB"
     ],
     "school": "Kamehameha Schools Kapalama",
     "height": "6-3",
@@ -239,7 +241,8 @@
     "name": "Linkin Apana",
     "classYear": 2027,
     "position": [
-      "LB"
+      "LB",
+      "Edge"
     ],
     "school": "Kamehameha Schools Kapalama",
     "height": "6-2",
