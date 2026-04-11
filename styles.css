@@ -343,14 +343,14 @@ body {
   display: inline-block;
   font-family: 'Teko', sans-serif;
   font-weight: 600;
-  font-size: 0.98rem;
-  letter-spacing: 0.06em;
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   background: var(--ember-glow);
   color: var(--ember);
-  padding: 0.1rem 0.5rem;
+  padding: 0.02rem 0.5rem;
   border-radius: 4px;
-  line-height: 1.4;
+  line-height: 1.05;
 }
 
 .card-tag.year {
@@ -884,7 +884,7 @@ body {
   }
 
   .card-name { font-size: 1.15rem; }
-  .card-tag { font-size: 0.9rem; padding: 0.08rem 0.4rem; }
+  .card-tag { font-size: 1.15rem; padding: 0.02rem 0.4rem; line-height: 1.05; }
   .card-meta { gap: 0.3rem; }
 
   .player-card::before { display: none; }
