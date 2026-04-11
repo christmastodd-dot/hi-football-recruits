@@ -124,12 +124,29 @@
     return school.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   }
 
+  // Try png → jpg → jpeg → fallback-to-initial.
+  // Called from img onerror handlers.
+  window.__offerImgFallback = function (img, slug) {
+    var tried = img.dataset.tried || 'png';
+    if (tried === 'png') {
+      img.dataset.tried = 'jpg';
+      img.src = 'logos/' + slug + '.jpg';
+    } else if (tried === 'jpg') {
+      img.dataset.tried = 'jpeg';
+      img.src = 'logos/' + slug + '.jpeg';
+    } else {
+      img.onerror = null;
+      img.parentNode.classList.add('no-logo');
+    }
+  };
+
   function renderCardOffers(offers) {
     if (!offers || offers.length === 0) return '';
     return '<div class="card-offers">' + offers.map(function (school) {
+      var slug = offerSlug(school);
       var initial = school.charAt(0).toUpperCase();
       return '<div class="offer-badge" title="' + esc(school) + '">' +
-        '<img src="logos/' + offerSlug(school) + '.png" alt="' + esc(school) + '" onerror="this.parentNode.classList.add(\'no-logo\')">' +
+        '<img src="logos/' + slug + '.png" alt="' + esc(school) + '" data-tried="png" onerror="window.__offerImgFallback(this, \'' + slug + '\')">' +
         '<span class="offer-initial">' + initial + '</span></div>';
     }).join('') + '</div>';
   }
@@ -140,7 +157,7 @@
       var slug = offerSlug(school);
       var initial = school.charAt(0).toUpperCase();
       return '<div class="modal-offer-badge">' +
-        '<img class="offer-logo-lg" src="logos/' + slug + '.png" alt="' + esc(school) + '" onerror="this.parentNode.classList.add(\'no-logo\')">' +
+        '<img class="offer-logo-lg" src="logos/' + slug + '.png" alt="' + esc(school) + '" data-tried="png" onerror="window.__offerImgFallback(this, \'' + slug + '\')">' +
         '<span class="offer-initial-lg">' + initial + '</span>' +
         '<span class="offer-school-name">' + esc(school) + '</span></div>';
     }).join('');
