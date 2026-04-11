@@ -20,6 +20,11 @@
       "bench": ""
     },
     "awards": [],
+    "offers": [
+      "Hawaii",
+      "UNLV",
+      "SDSU"
+    ],
     "links": {
       "hudl": "https://www.hudl.com/profile/22588067/Esaiah-Wong",
       "twitter": "https://x.com/_EsaiahWong",
@@ -30,7 +35,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -54,6 +59,9 @@
       "bench": ""
     },
     "awards": [],
+    "offers": [
+      "UNLV"
+    ],
     "links": {
       "hudl": "https://www.hudl.com/profile/22825651/lennox-chee",
       "twitter": "https://x.com/lennoxchee",
@@ -64,7 +72,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -97,7 +105,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -122,6 +130,14 @@
     "awards": [
       "2025 1st-Team All-State (Hawaii)"
     ],
+    "offers": [
+      "Hawaii",
+      "SDSU",
+      "UNLV",
+      "CSU",
+      "WSU",
+      "Army"
+    ],
     "links": {
       "hudl": "https://www.hudl.com/profile/16205580/Evan-Duke-Cazimero",
       "twitter": "https://x.com/EvanCazimero21",
@@ -132,7 +148,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -155,6 +171,9 @@
       "bench": ""
     },
     "awards": [],
+    "offers": [
+      "UNLV"
+    ],
     "links": {
       "hudl": "https://www.hudl.com/profile/16255678/Iraia-Manumaleuna",
       "twitter": "https://x.com/Iraia_Manu/status/1922875014266634335",
@@ -165,7 +184,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -199,7 +218,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -232,7 +251,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   },
   {
@@ -265,7 +284,7 @@
     "contact": {
       "coachName": "Kaeo Drummondo",
       "email": "kadrummo@ksbe.edu",
-      "phone": "808-384-0668"
+      "phone": ""
     }
   }
 ]
