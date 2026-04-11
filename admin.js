@@ -111,6 +111,17 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(players));
   }
 
+  // --- Sort helper ---
+  function lastNameOf(name) {
+    const parts = (name || '').trim().split(/\s+/);
+    return parts[parts.length - 1] || '';
+  }
+
+  function compareByLastName(a, b) {
+    const cmp = lastNameOf(a.name).localeCompare(lastNameOf(b.name));
+    return cmp !== 0 ? cmp : (a.name || '').localeCompare(b.name || '');
+  }
+
   // --- List ---
   function renderList() {
     if (players.length === 0) {
@@ -118,8 +129,8 @@
       return;
     }
 
-    // Sort alphabetically by name
-    const sorted = [...players].sort((a, b) => a.name.localeCompare(b.name));
+    // Sort alphabetically by last name (with full name as tiebreaker)
+    const sorted = [...players].sort(compareByLastName);
 
     playerList.innerHTML = sorted.map(p => `
       <div class="admin-player-row" data-id="${p.id}">

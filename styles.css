@@ -343,7 +343,7 @@ body {
   display: inline-block;
   font-family: 'Teko', sans-serif;
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.98rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   background: var(--ember-glow);
@@ -884,7 +884,7 @@ body {
   }
 
   .card-name { font-size: 1.15rem; }
-  .card-tag { font-size: 0.75rem; padding: 0.08rem 0.4rem; }
+  .card-tag { font-size: 0.9rem; padding: 0.08rem 0.4rem; }
   .card-meta { gap: 0.3rem; }
 
   .player-card::before { display: none; }

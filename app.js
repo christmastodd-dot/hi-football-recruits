@@ -42,7 +42,17 @@
       if (pos && !positions.includes(pos)) return false;
       if (q && !p.name.toLowerCase().includes(q) && !p.school.toLowerCase().includes(q)) return false;
       return true;
-    }).sort((a, b) => a.name.localeCompare(b.name));
+    }).sort(compareByLastName);
+  }
+
+  function lastNameOf(name) {
+    const parts = (name || '').trim().split(/\s+/);
+    return parts[parts.length - 1] || '';
+  }
+
+  function compareByLastName(a, b) {
+    const cmp = lastNameOf(a.name).localeCompare(lastNameOf(b.name));
+    return cmp !== 0 ? cmp : (a.name || '').localeCompare(b.name || '');
   }
 
   function render() {
