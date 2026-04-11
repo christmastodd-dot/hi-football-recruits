@@ -387,7 +387,7 @@ body {
   border-radius: 50%;
   overflow: hidden;
   position: relative;
-  background: var(--obsidian);
+  background: #fff;
   border: 1px solid rgba(107, 115, 132, 0.15);
   flex-shrink: 0;
 }
@@ -612,6 +612,7 @@ body {
   height: 28px;
   object-fit: contain;
   border-radius: 4px;
+  background: #fff;
   flex-shrink: 0;
 }
 
