@@ -320,5 +320,186 @@
       "email": "kadrummo@ksbe.edu",
       "phone": ""
     }
+  },
+  {
+    "id": "tyson-brody-moose-wailehua",
+    "name": "Tyson Brody \"Moose\" Wailehua",
+    "classYear": 2028,
+    "position": [
+      "S"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-0",
+    "weight": 170,
+    "gpa": "3.2",
+    "photo": "photos/moose.jpeg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "offers": [],
+    "links": {
+      "hudl": "https://www.hudl.com/video/3/18469719/68e99e4f3b1f80b2549bf905",
+      "twitter": "https://x.com/MooseWailehua",
+      "rivals": "",
+      "twoFourSeven": "",
+      "youtube": ""
+    }
+  },
+  {
+    "id": "anthony-sardine",
+    "name": "Anthony Sardine",
+    "classYear": 2027,
+    "position": [
+      "S",
+      "WR"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-2",
+    "weight": 195,
+    "gpa": "3.9",
+    "photo": "photos/sardine.jpeg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "offers": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/20476845/Anthony-SARDINE-JR",
+      "twitter": "",
+      "rivals": "",
+      "twoFourSeven": "",
+      "youtube": ""
+    }
+  },
+  {
+    "id": "nainoah-samia",
+    "name": "Nainoah Samia",
+    "classYear": 2028,
+    "position": [
+      "S"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "5-11",
+    "weight": 170,
+    "gpa": "",
+    "photo": "photos/nainoahsamia",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "offers": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/18474887/nainoah-samia",
+      "twitter": "",
+      "rivals": "",
+      "twoFourSeven": "",
+      "youtube": ""
+    }
+  },
+  {
+    "id": "niamiah-samia",
+    "name": "Niamiah Samia",
+    "classYear": 2028,
+    "position": [
+      "CB",
+      "S"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "5-10",
+    "weight": 160,
+    "gpa": "",
+    "photo": "photos/niamiahsamia.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [
+      "ILH First-Team CB 2026"
+    ],
+    "offers": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/22917092/niamiah-samia",
+      "twitter": "https://x.com/NiamiahSamia/status/2050094611121713308",
+      "rivals": "",
+      "twoFourSeven": "",
+      "youtube": ""
+    }
+  },
+  {
+    "id": "jayden-braun",
+    "name": "Jayden Braun",
+    "classYear": 2028,
+    "position": [
+      "SB",
+      "CB"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "5-9",
+    "weight": 170,
+    "gpa": "",
+    "photo": "photos/jaydenbraun.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [
+      "ILH First Team WR 2026"
+    ],
+    "offers": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/22589773/Jayden-Braun",
+      "twitter": "https://x.com/jbraun__2",
+      "rivals": "",
+      "twoFourSeven": "",
+      "youtube": ""
+    }
+  },
+  {
+    "id": "joseph-robledo",
+    "name": "Joseph Robledo",
+    "classYear": 2027,
+    "position": [
+      "OL"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "5-11",
+    "weight": 280,
+    "gpa": "3.8",
+    "photo": "photos/josephrobledo.jpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "offers": [],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/19328996/Joseph-Robledo",
+      "twitter": "https://x.com/JosephRobledo77",
+      "rivals": "",
+      "twoFourSeven": "",
+      "youtube": ""
+    }
   }
 ]
