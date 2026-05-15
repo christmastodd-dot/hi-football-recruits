@@ -321,6 +321,192 @@
     importFile.value = '';
   });
 
+  // --- Image Upload Utilities ---
+  function compressImage(file, maxDim, quality) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onerror = function () { reject(new Error('Failed to read file')); };
+      reader.onload = function (e) {
+        var img = new Image();
+        img.onerror = function () { reject(new Error('Invalid image file')); };
+        img.onload = function () {
+          var w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          var canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          var dataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve(dataUrl.split(',')[1]);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function compressImagePNG(file, maxDim) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onerror = function () { reject(new Error('Failed to read file')); };
+      reader.onload = function (e) {
+        var img = new Image();
+        img.onerror = function () { reject(new Error('Invalid image file')); };
+        img.onload = function () {
+          var w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          var canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          var dataUrl = canvas.toDataURL('image/png');
+          resolve(dataUrl.split(',')[1]);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function getToken() {
+    var token = sessionStorage.getItem(TOKEN_KEY);
+    if (!token) {
+      token = prompt('Enter your GitHub Personal Access Token to upload:');
+      if (token) sessionStorage.setItem(TOKEN_KEY, token.trim());
+    }
+    return token ? token.trim() : null;
+  }
+
+  async function uploadFileToGitHub(path, base64Content, message) {
+    var token = getToken();
+    if (!token) throw new Error('No GitHub token provided.');
+
+    var apiUrl = 'https://api.github.com/repos/' + GITHUB_REPO.owner + '/' + GITHUB_REPO.name +
+      '/contents/' + path + '?ref=' + GITHUB_REPO.branch;
+
+    // Check if file exists to get SHA for overwrite
+    var sha = null;
+    var getResp = await fetch(apiUrl, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if (getResp.ok) {
+      var current = await getResp.json();
+      sha = current.sha;
+    }
+
+    var body = { message: message, content: base64Content, branch: GITHUB_REPO.branch };
+    if (sha) body.sha = sha;
+
+    var putResp = await fetch(apiUrl.split('?')[0], {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!putResp.ok) {
+      var err = await putResp.json().catch(function () { return {}; });
+      throw new Error('Upload failed (' + putResp.status + '): ' + (err.message || putResp.statusText));
+    }
+    return putResp.json();
+  }
+
+  // --- Player Photo Upload ---
+  var uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+  var fPhotoFile = document.getElementById('fPhotoFile');
+  var photoUploadStatus = document.getElementById('photoUploadStatus');
+
+  uploadPhotoBtn.addEventListener('click', function () { fPhotoFile.click(); });
+
+  fPhotoFile.addEventListener('change', async function () {
+    var file = fPhotoFile.files[0];
+    if (!file) return;
+
+    var name = document.getElementById('fName').value.trim();
+    var classYear = document.getElementById('fClassYear').value;
+    if (!name) { alert('Enter the player name first, then upload the photo.'); fPhotoFile.value = ''; return; }
+
+    var filename = name.toLowerCase().replace(/[^a-z0-9]+/g, '') + (classYear ? classYear.toString().slice(-2) : '') + '.jpg';
+
+    photoUploadStatus.textContent = 'Compressing & uploading…';
+    photoUploadStatus.className = 'upload-status-inline info';
+
+    try {
+      var base64 = await compressImage(file, 800, 0.82);
+      await uploadFileToGitHub('photos/' + filename, base64, 'Upload photo: ' + filename);
+      document.getElementById('fPhoto').value = filename;
+      photoUploadStatus.textContent = '✓ Uploaded ' + filename;
+      photoUploadStatus.className = 'upload-status-inline success';
+    } catch (e) {
+      photoUploadStatus.textContent = 'Error: ' + e.message;
+      photoUploadStatus.className = 'upload-status-inline error';
+    }
+    fPhotoFile.value = '';
+  });
+
+  // --- Logo Upload ---
+  var uploadLogoBtn = document.getElementById('uploadLogoBtn');
+  var logoOverlay = document.getElementById('logoOverlay');
+  var logoClose = document.getElementById('logoClose');
+  var logoCancel = document.getElementById('logoCancel');
+  var logoConfirm = document.getElementById('logoConfirm');
+  var logoSchoolName = document.getElementById('logoSchoolName');
+  var logoFile = document.getElementById('logoFile');
+  var logoUploadStatus = document.getElementById('logoUploadStatus');
+
+  uploadLogoBtn.addEventListener('click', function () {
+    logoSchoolName.value = '';
+    logoFile.value = '';
+    logoUploadStatus.textContent = '';
+    logoUploadStatus.className = 'publish-status';
+    logoOverlay.classList.add('active');
+  });
+  logoClose.addEventListener('click', function () { logoOverlay.classList.remove('active'); });
+  logoCancel.addEventListener('click', function () { logoOverlay.classList.remove('active'); });
+  logoOverlay.addEventListener('click', function (e) { if (e.target === logoOverlay) logoOverlay.classList.remove('active'); });
+
+  logoConfirm.addEventListener('click', async function () {
+    var school = logoSchoolName.value.trim();
+    var file = logoFile.files[0];
+    if (!school) { setLogoStatus('error', 'Enter the school name.'); return; }
+    if (!file) { setLogoStatus('error', 'Select a logo file.'); return; }
+
+    var slug = school.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    var ext = file.type === 'image/png' ? 'png' : 'jpg';
+    var filename = slug + '.' + ext;
+
+    setLogoStatus('info', 'Compressing & uploading ' + filename + '…');
+    logoConfirm.disabled = true;
+
+    try {
+      var base64;
+      if (ext === 'png') {
+        base64 = await compressImagePNG(file, 200);
+      } else {
+        base64 = await compressImage(file, 200, 0.9);
+      }
+      await uploadFileToGitHub('logos/' + filename, base64, 'Upload logo: ' + filename);
+      setLogoStatus('success', '✓ Uploaded logos/' + filename + ' — it will appear on the live site in ~1 min.');
+    } catch (e) {
+      setLogoStatus('error', 'Error: ' + e.message);
+    }
+    logoConfirm.disabled = false;
+  });
+
+  function setLogoStatus(type, msg) {
+    logoUploadStatus.textContent = msg;
+    logoUploadStatus.className = 'publish-status' + (type ? ' ' + type : '');
+  }
+
   // --- Reload from Live ---
   reloadBtn.addEventListener('click', () => {
     if (!confirm('Discard local drafts and reload the player list from the live site? Any unpublished changes will be lost.')) return;

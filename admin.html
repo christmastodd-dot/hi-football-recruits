@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin — Hawaii Football Recruits</title>
-  <link rel="stylesheet" href="styles.css?v=20260411e">
-  <link rel="stylesheet" href="admin.css?v=20260411e">
+  <link rel="stylesheet" href="styles.css?v=20260411f">
+  <link rel="stylesheet" href="admin.css?v=20260411f">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Teko:wght@400;500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
 </head>
@@ -28,6 +28,7 @@
           <input type="file" accept=".json" id="importFile" hidden>
         </label>
         <button class="btn btn-outline" id="reloadBtn" title="Discard local drafts and reload from the live site">Reload Live</button>
+        <button class="btn btn-outline" id="uploadLogoBtn">Upload Logo</button>
         <button class="btn btn-primary" id="addPlayerBtn">+ Add Player</button>
         <button class="btn btn-publish" id="publishBtn">Publish to GitHub</button>
       </div>
@@ -147,8 +148,13 @@
             </div>
 
             <div class="form-group">
-              <label>Photo filename (in /photos folder)</label>
-              <input type="text" id="fPhoto" placeholder="e.g. koa-makoa.jpg">
+              <label>Player Photo</label>
+              <div class="photo-upload-row">
+                <input type="text" id="fPhoto" placeholder="filename (auto-filled on upload)">
+                <input type="file" accept="image/*" id="fPhotoFile" hidden>
+                <button type="button" class="btn btn-outline btn-sm" id="uploadPhotoBtn">Upload</button>
+              </div>
+              <div id="photoUploadStatus" class="upload-status-inline"></div>
             </div>
 
             <h3 class="form-section-title">Measurables</h3>
@@ -220,6 +226,38 @@
       </div>
     </div>
 
+    <!-- Logo Upload Modal -->
+    <div class="modal-overlay" id="logoOverlay">
+      <div class="modal" style="max-width:460px">
+        <button class="modal-close" id="logoClose">&times;</button>
+        <div class="modal-body">
+          <h2 style="margin-bottom:0.5rem">Upload School Logo</h2>
+          <p style="color:var(--stone);font-size:0.86rem;margin-bottom:1.25rem;line-height:1.5">
+            Upload a logo for a school. The filename is auto-generated from
+            the school name — make sure it matches what you type in the
+            offers field exactly.
+          </p>
+
+          <div class="form-group">
+            <label>School Name</label>
+            <input type="text" id="logoSchoolName" placeholder="e.g. SJSU, Oregon, HAWAII">
+          </div>
+
+          <div class="form-group">
+            <label>Logo Image</label>
+            <input type="file" accept="image/*" id="logoFile">
+          </div>
+
+          <div id="logoUploadStatus" class="publish-status"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" id="logoCancel">Cancel</button>
+            <button type="button" class="btn btn-primary" id="logoConfirm">Upload Logo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Publish to GitHub Modal -->
     <div class="modal-overlay" id="publishOverlay">
       <div class="modal" style="max-width:520px">
@@ -261,6 +299,6 @@
     Hawaii Football Recruits &mdash; Admin Panel
   </footer>
 
-  <script src="admin.js?v=20260411e"></script>
+  <script src="admin.js?v=20260411f"></script>
 </body>
 </html>
