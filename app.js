@@ -72,6 +72,7 @@
         </div>
         <div class="card-body">
           <div class="card-name">${esc(p.name)}</div>
+          ${renderStars(p.starRating, 'card-stars')}
           <div class="card-meta">
             ${(Array.isArray(p.position) ? p.position : [p.position]).map((pos, i) => `<span class="card-tag${i > 0 ? ' secondary' : ''}">${esc(pos)}</span>`).join('')}
             <span class="card-tag year">${p.classYear}</span>
@@ -100,6 +101,7 @@
 
     modalBody.innerHTML = `
       <div class="modal-name">${esc(p.name)}</div>
+      ${renderStars(p.starRating, 'modal-stars')}
       <div class="modal-size">${esc(p.height)} / ${p.weight} lbs</div>
       <div class="modal-info">
         ${formatModalPositions(p.position)} &bull; Class of ${p.classYear} &bull; ${esc(p.school)}
@@ -130,6 +132,16 @@
   });
 
   // Render helpers
+  function renderStars(rating, className) {
+    if (!rating || rating < 1) return '';
+    var html = '<div class="' + className + '">';
+    for (var i = 1; i <= 5; i++) {
+      html += '<span class="' + (i <= rating ? 'star-filled' : 'star-empty') + '">★</span>';
+    }
+    html += '</div>';
+    return html;
+  }
+
   function formatModalPositions(pos) {
     var arr = Array.isArray(pos) ? pos : (pos ? [pos] : []);
     if (arr.length === 0) return '';

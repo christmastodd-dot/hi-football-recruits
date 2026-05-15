@@ -187,6 +187,7 @@
       });
       document.getElementById('fSchool').value = p.school;
       document.getElementById('fClassYear').value = p.classYear;
+      document.getElementById('fStarRating').value = p.starRating || '';
       document.getElementById('fHeight').value = p.height || '';
       document.getElementById('fWeight').value = p.weight || '';
       document.getElementById('fGpa').value = p.gpa || '';
@@ -242,6 +243,7 @@
       id: id,
       name: name,
       classYear: parseInt(document.getElementById('fClassYear').value, 10),
+      starRating: parseInt(document.getElementById('fStarRating').value, 10) || 0,
       position: positions,
       school: document.getElementById('fSchool').value.trim(),
       height: document.getElementById('fHeight').value.trim(),
