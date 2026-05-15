@@ -501,5 +501,38 @@
       "twoFourSeven": "",
       "youtube": ""
     }
+  },
+  {
+    "id": "pohaikea-kaleleiki",
+    "name": "Pohaikea Kaleleiki",
+    "classYear": 2030,
+    "position": [
+      "Edge",
+      "ATH"
+    ],
+    "school": "Kamehameha Schools Kapalama",
+    "height": "6-5",
+    "weight": 215,
+    "gpa": "",
+    "photo": "photos/pohakeak.kpg",
+    "measurables": {
+      "fortyYard": "",
+      "shuttle": "",
+      "vertical": "",
+      "broadJump": "",
+      "bench": ""
+    },
+    "awards": [],
+    "offers": [
+      "SMU",
+      "Hawaii"
+    ],
+    "links": {
+      "hudl": "https://www.hudl.com/profile/23107749/Pohakea-Kaleleiki",
+      "twitter": "https://x.com/Pohakeak",
+      "rivals": "",
+      "twoFourSeven": "",
+      "youtube": ""
+    }
   }
 ]
