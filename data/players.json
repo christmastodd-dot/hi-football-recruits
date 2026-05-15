@@ -129,6 +129,7 @@
     "id": "evan-duke-cazimero",
     "name": "Evan Duke Cazimero",
     "classYear": 2027,
+    "starRating": 3,
     "position": [
       "LB"
     ],
@@ -250,6 +251,7 @@
     "id": "linkin-apana",
     "name": "Linkin Apana",
     "classYear": 2027,
+    "starRating": 3,
     "position": [
       "LB",
       "Edge"
