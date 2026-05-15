@@ -375,10 +375,10 @@
   }
 
   function getToken() {
-    var token = sessionStorage.getItem(TOKEN_KEY);
+    var token = localStorage.getItem(TOKEN_KEY);
     if (!token) {
       token = prompt('Enter your GitHub Personal Access Token to upload:');
-      if (token) sessionStorage.setItem(TOKEN_KEY, token.trim());
+      if (token) localStorage.setItem(TOKEN_KEY, token.trim());
     }
     return token ? token.trim() : null;
   }
@@ -530,7 +530,7 @@
   publishConfirm.addEventListener('click', doPublish);
 
   function openPublish() {
-    publishToken.value = sessionStorage.getItem(TOKEN_KEY) || '';
+    publishToken.value = localStorage.getItem(TOKEN_KEY) || '';
     publishMessage.value = 'Update player data (' + players.length + ' players)';
     setPublishStatus('', '');
     publishOverlay.classList.add('active');
@@ -560,7 +560,7 @@
       return;
     }
 
-    sessionStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(TOKEN_KEY, token);
     publishConfirm.disabled = true;
     setPublishStatus('info', 'Fetching current file from GitHub…');
 
