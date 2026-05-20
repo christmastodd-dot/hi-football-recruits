@@ -81,6 +81,7 @@
     "id": "tau-purcell",
     "name": "Tau Purcell",
     "classYear": 2028,
+    "starRating": 0,
     "position": [
       "LB",
       "Edge"
@@ -110,7 +111,11 @@
       "SDSU",
       "UCF",
       "TEXAS",
-      "OREGON"
+      "OREGON",
+      "USC",
+      "CSU",
+      "Arizona",
+      "UCLA"
     ],
     "links": {
       "hudl": "https://www.hudl.com/profile/18469717/Tau-Purcell",
@@ -277,7 +282,8 @@
       "ARMY",
       "SDSU",
       "UNLV",
-      "SJSU"
+      "SJSU",
+      "Hawaii"
     ],
     "links": {
       "hudl": "https://www.hudl.com/profile/19443559/Linkin-Apana",
