@@ -303,6 +303,7 @@
     "id": "loea-keopuhiwa",
     "name": "Loea Keopuhiwa",
     "classYear": 2029,
+    "starRating": 0,
     "position": [
       "QB"
     ],
@@ -320,7 +321,8 @@
     },
     "awards": [],
     "offers": [
-      "SMU"
+      "SMU",
+      "UTAH"
     ],
     "links": {
       "hudl": "https://www.hudl.com/profile/26762392/loea-keopuhiwa",
