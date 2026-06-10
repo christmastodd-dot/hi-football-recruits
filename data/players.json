@@ -277,6 +277,7 @@
     "offers": [
       "TCU",
       "BOISE ST",
+      "UTAH",
       "UTSA",
       "WSU",
       "ARMY",
@@ -338,6 +339,7 @@
     "id": "tyson-brody-moose-wailehua",
     "name": "Tyson Brody \"Moose\" Wailehua",
     "classYear": 2028,
+    "starRating": 0,
     "position": [
       "S"
     ],
@@ -356,7 +358,9 @@
     "awards": [
       "2025 1st-Team All-ILH DB"
     ],
-    "offers": [],
+    "offers": [
+      "Nevada"
+    ],
     "links": {
       "hudl": "https://www.hudl.com/video/3/18469719/68e99e4f3b1f80b2549bf905",
       "twitter": "https://x.com/MooseWailehua",
